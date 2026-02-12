@@ -1,7 +1,7 @@
-{ mkDerivation, aeson, ansi-terminal, attoparsec, base, bytestring
-, conduit, conduit-extra, containers, deepseq, directory, filepath
-, http-conduit, http-types, memoize, optparse-applicative, parallel
-, process, QuickCheck, resourcet, stdenv, text, transformers
+{ mkDerivation, aeson, attoparsec, base, bytestring
+, containers, deepseq, directory, filepath
+, optparse-applicative, parallel
+, process, QuickCheck, text, transformers
 , vector, lib
 }:
 mkDerivation {
@@ -13,19 +13,18 @@ mkDerivation {
   enableSeparateDataOutput = true;
   libraryHaskellDepends = [
     aeson attoparsec base bytestring
-    containers deepseq directory filepath
-    memoize optparse-applicative text transformers
+    containers directory filepath
+    optparse-applicative text transformers
     vector
   ];
   executableHaskellDepends = [
-    aeson attoparsec base bytestring
-    containers deepseq directory filepath
-    memoize optparse-applicative parallel text
-    transformers vector
+    aeson base bytestring
+    containers deepseq directory
+    parallel
   ];
   testHaskellDepends = [
-    aeson attoparsec base bytestring containers deepseq directory
-    filepath memoize process QuickCheck text transformers vector
+    base bytestring containers
+    process QuickCheck vector
   ];
   homepage = "http://akc.is/hops";
   description = "Handy Operations on Power Series";

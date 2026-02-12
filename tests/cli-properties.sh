@@ -3,7 +3,7 @@
 n=0
 
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}dist/build"
-hops=dist/build/hops/hops
+hops=${HOPS_BIN:-dist/build/hops/hops}
 
 check () {
   n=$((n + 1))
