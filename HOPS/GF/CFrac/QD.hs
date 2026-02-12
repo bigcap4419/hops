@@ -13,8 +13,10 @@ module HOPS.GF.CFrac.QD
     , jacobi1
     ) where
 
-import Data.Function.Memoize
+import Data.IORef
+import qualified Data.Map.Strict as Map
 import Data.Vector (Vector, (!))
+import System.IO.Unsafe (unsafePerformIO)
 import qualified Data.Vector as V
 import HOPS.GF.CFrac.Contraction
 
@@ -65,3 +67,17 @@ stieltjes cs =
 twine :: [a] -> [a] -> [a]
 twine [] bs = bs
 twine (a:as) bs = a : twine bs as
+
+memoize2 :: (Int -> Int -> a) -> (Int -> Int -> a)
+memoize2 f = memo
+  where
+    cache = unsafePerformIO (newIORef Map.empty)
+    {-# NOINLINE cache #-}
+    memo i j = unsafePerformIO $ do
+        m <- readIORef cache
+        case Map.lookup (i, j) m of
+            Just v  -> return v
+            Nothing -> do
+                let v = f i j
+                modifyIORef cache (Map.insert (i, j) v)
+                return v

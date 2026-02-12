@@ -44,7 +44,7 @@ module HOPS.GF
 import GHC.TypeLits
 import Data.Proxy
 import Data.Maybe
-import Data.List
+import Data.List hiding ((!?))
 import Data.Ratio
 import Data.Aeson (FromJSON (..), ToJSON(..), Value (..))
 import Data.Text.Encoding (encodeUtf8, decodeUtf8)

@@ -8,11 +8,11 @@ License-file:        LICENSE
 Author:              Anders Claesson
 Maintainer:          anders.claesson@gmail.com
 Category:            Math
-Build-type:          Custom
+Build-type:          Simple
 Extra-Source-Files:  README.md hops.1 tests/cli-properties.sh
 Data-Files:          data/stub.db
 
-Cabal-version:       >=1.9.2
+Cabal-version:       >=1.10
 Tested-With:         GHC == 8.0.2
 
 source-repository head
@@ -35,7 +35,7 @@ Executable hops
                        deepseq >=1.3,
                        directory >=1.2,
                        filepath >=1.3,
-                       memoize >=0.8,
+                       containers >=0.5,
                        optparse-applicative >=0.10,
                        parallel >=3.2,
                        text >=0.11,
@@ -78,7 +78,7 @@ Library
                        deepseq >=1.3,
                        directory >=1.2,
                        filepath >=1.3,
-                       memoize >=0.8,
+                       containers >=0.5,
                        optparse-applicative >=0.10,
                        text >=0.11,
                        transformers >=0.4,
@@ -95,7 +95,7 @@ Test-Suite Props
                        deepseq >=1.3,
                        directory >=1.2,
                        filepath >=1.3,
-                       memoize >=0.8,
+                       containers >=0.5,
                        text >=0.11,
                        transformers >=0.4,
                        vector >=0.10,
