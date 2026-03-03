@@ -2,7 +2,7 @@
 , containers, deepseq, directory, filepath
 , optparse-applicative, parallel
 , process, QuickCheck, text, transformers
-, vector, lib
+, vector, lib, pandoc
 }:
 mkDerivation {
   pname = "hops";
@@ -26,6 +26,14 @@ mkDerivation {
     base bytestring containers
     process QuickCheck vector
   ];
+  prePatch = ''
+    ${pandoc}/bin/pandoc -s -t man docs/hops.md -o hops.1
+    rm -f Makefile
+  '';
+  postInstall = ''
+    mkdir -p $out/share/man/man1
+    cp hops.1 $out/share/man/man1/
+  '';
   homepage = "http://akc.is/hops";
   description = "Handy Operations on Power Series";
   license = lib.licenses.bsd3;
